@@ -11,8 +11,8 @@ int maxSubArray(vector<int>& nums) {
             sum+=nums[i];
             if (sum>max) {
                 max=sum;
-                ansStart=start;
-                ansEnd=i;
+                int ansStart=start;
+                int ansEnd=i;
             }
             if (sum<0) sum=0;
         }
