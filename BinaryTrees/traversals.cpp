@@ -102,6 +102,31 @@ vector<int> inorderTraversal(Node* root) {
         return ans;
     }
 
+//zig-zag
+vector<int> zigzagTreeTraversal(Node *root) {
+        vector<int> ans;
+        if (root == NULL) return ans;
+        queue<Node*> q;
+        q.push(root);
+        bool leftToRight = true;
+        while (!q.empty()) {
+            int n = q.size();
+            vector<int> v(n, 0);
+            for (int i = 0; i < n; i++)  {
+                Node* curr = q.front();
+                q.pop();
+                int index = (leftToRight) ? i : (n - i -1);
+                v[index] = curr -> data;
+
+                if (curr -> left != NULL) q.push(curr -> left);
+                if (curr -> right != NULL) q.push(curr -> right);
+            }
+            leftToRight = !leftToRight;
+            for (auto it : v) ans.push_back(it);
+        }
+        return ans;
+    }
+
 //preoder(iterative)
 void preOrder(Node*root) {
     stack<Node*> s;
@@ -142,7 +167,7 @@ vector<int> postorderTraversal(Node* root)
 {
     stack<Node*> s1, s2;
     vector<int> ans;
-    if (root == NULL) return ans;
+    if (root == NULL) return ans; 
     s1.push(root);
     while (!s1.empty()) {
         Node* temp = s1.top();

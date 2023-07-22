@@ -103,3 +103,10 @@ int diameterOfBinaryTree(TreeNode *root)
     return m;
 }
 
+//check if trees are same T: O(N), S: O(N)
+bool check(TreeNode *root1, TreeNode *root2) {
+    if (root1 == NULL || root2 == NULL) {
+        return (root1 == root2);
+    }
+    return (root1->data == root2->data) && check(root1->left, root2->left) && check(root1->right, root2->right);
+}
