@@ -102,7 +102,7 @@ vector<int> inorderTraversal(Node* root) {
         return ans;
     }
 
-//zig-zag
+//zig-zag 1
 vector<int> zigzagTreeTraversal(Node *root) {
         vector<int> ans;
         if (root == NULL) return ans;
@@ -126,6 +126,37 @@ vector<int> zigzagTreeTraversal(Node *root) {
         }
         return ans;
     }
+
+//zig zag 2
+vector<int> findSpiral(Node *root)
+{
+    vector<int> ans;
+    if (root == NULL) return ans;
+    queue<Node*> q;
+    q.push(root);
+    
+    int l = 0;
+    while (!q.empty()) {
+        int size = q.size();
+        int pos = ans.size();
+        for (int i = 0; i < size; i++) {
+            Node* top = q.front();
+            q.pop();
+            ans.push_back(top -> data);
+            if (top -> left) {
+                q.push(top -> left);
+                // nodeCnt++;
+            }
+            if (top -> right) {
+                q.push(top -> right);
+                // nodeCnt++;
+            }
+        }
+        if (l % 2 == 0 && pos >= 0) reverse(ans.begin() + pos, ans.end());
+        l++;
+    }
+    return ans;
+}
 
 //preoder(iterative)
 void preOrder(Node*root) {
